@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="lab.imaginenat.com.project2.AddNewBusinessActivity">
+    <LinearLayout
+        android:id="@+id/fields_layout"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:text="BUSINESS NAME:"
+                android:textSize="12sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ENTER BUSINESS NAME HERE"
+                android:textSize="12sp"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:text="STREET:"
+                android:textSize="12sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ENTER STREET ADDRESS HERE"
+                android:textSize="12sp"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:text="STATE:"
+                android:textSize="12sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ENTER STATE"
+                android:textSize="12sp"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:text="ZIP CODE:"
+                android:textSize="12sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ENTER ZIP CODE HERE"
+                android:textSize="12sp"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:text="CATEGORY:"
+                android:textSize="12sp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="ENTER CATEGORY"
+                android:textSize="12sp"
+                android:textAlignment="viewEnd"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/addToDB_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+            <Button
+                android:id="@+id/cancel_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CANCEL"
+                android:layout_alignParentBottom="true"
+                android:layout_alignRight="@+id/fields_layout"
+                android:layout_alignEnd="@+id/fields_layout"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
