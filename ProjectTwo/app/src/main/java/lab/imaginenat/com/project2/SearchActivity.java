@@ -78,7 +78,7 @@ public class SearchActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Log.d("SearchActivity", "CLICKED");
-                getLongLat(v);
+                //getLongLat(v);
                 JSONReader reader = new JSONReader(mLatAndLong,SearchActivity.this);//"40.7144,-74.006");
                 reader.execute();
 

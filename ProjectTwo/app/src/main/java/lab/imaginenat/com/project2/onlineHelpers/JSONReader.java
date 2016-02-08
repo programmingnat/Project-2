@@ -7,6 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Random;
+
 import lab.imaginenat.com.project2.models.Place;
 import lab.imaginenat.com.project2.models.PlaceManager;
 
@@ -77,7 +79,11 @@ public class JSONReader extends DownloadData {
         final String RESULTS ="results";
         final String NAME ="name";
         final String GEOMETRY="geometry";
+        final String LOCATION="location";
         final String ADDRESS="formatted_address";
+        final String LATITUDE="lat";
+        final String LONGITUDE="lng";
+        final String PHOTO="photos";
 
         try{
 
@@ -88,11 +94,31 @@ public class JSONReader extends DownloadData {
                 JSONObject dataObject =resultsArray.getJSONObject(i);
                 String name = dataObject.getString(NAME);
                 String address=dataObject.getString(ADDRESS);
+
+                //for coordinates
+                JSONObject geometryObject = dataObject.getJSONObject(GEOMETRY);
+                JSONObject locationObject = geometryObject.getJSONObject(LOCATION);
+                String lat = locationObject.getString(LATITUDE);
+                String lng = locationObject.getString(LONGITUDE);
+
+                //get random photo
+                JSONArray photosArray = dataObject.getJSONArray(PHOTO);
+                int numberOfPhotos = photosArray.length();
+                Random r = new Random();
+                int photoIndex=r.nextInt(numberOfPhotos);
+                JSONObject photoObject = photosArray.getJSONObject(photoIndex);
+                String photoReference = photoObject.getString("photo_reference");
+
+
                 Log.d("JSONREADER","name "+name);
 
                 Place place = new Place(name);
                 place.setAddress(address);
+                place.setImageResource(photoReference);
+                place.setLatitude(lat);
+                place.setLongitude(lng);
                 placeManager.addPlace(place);
+
             }
 
             notifyMe.completedTask();

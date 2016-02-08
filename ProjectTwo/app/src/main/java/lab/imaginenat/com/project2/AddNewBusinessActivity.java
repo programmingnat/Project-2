@@ -12,7 +12,7 @@ import lab.imaginenat.com.project2.models.PlaceManager;
 
 public class AddNewBusinessActivity extends AppCompatActivity {
 
-
+    private Place mPlace;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,7 @@ public class AddNewBusinessActivity extends AppCompatActivity {
             stateTF.setText(p.getBusinessState());
             EditText zipTF = (EditText)findViewById(R.id.businessZip_EditText);
             zipTF.setText(p.getZipCode());
+            mPlace=p;
         }
         Button addButton = (Button)findViewById(R.id.addToDB_Button);
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +43,9 @@ public class AddNewBusinessActivity extends AppCompatActivity {
                 EditText zipTF = (EditText)findViewById(R.id.businessZip_EditText);
                 Business b = new Business(nameTF.getText().toString(),addressTF.getText().toString(),
                         stateTF.getText().toString(),zipTF.getText().toString(),"default");
+                b.setImageResource(mPlace.getImageResource());
+                b.setLat(mPlace.getLatitude());
+                b.setLong(mPlace.getLongitude());
                 BusinessManager manager=BusinessManager.getInstance(AddNewBusinessActivity.this);
                 manager.addBusiness(b);
                 finish();

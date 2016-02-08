@@ -6,7 +6,7 @@ package lab.imaginenat.com.project2.database;
 public class BusinessDbSchema {
     public static final class BusinessTable {
         public static final String NAME = "businesses";
-        public static final String[] ALL_COLS = {Cols.UUID, Cols.BIZ_NAME, Cols.ADDRESS, Cols.STATE,Cols.ZIP, Cols.TYPE, Cols.FAVORITED};
+        public static final String[] ALL_COLS = {Cols.UUID, Cols.BIZ_NAME, Cols.ADDRESS, Cols.STATE,Cols.ZIP, Cols.IMAGE_REF,Cols.LATITUDE,Cols.LONGITUDE,Cols.TYPE, Cols.FAVORITED};
         public static final String CREATE_BUSINESS_TABLE = "CREATE TABLE " + BusinessDbSchema.BusinessTable.NAME +
                 "(" +
                 BusinessDbSchema.BusinessTable.Cols.UUID + " INTEGER PRIMARY KEY, " +
@@ -14,6 +14,9 @@ public class BusinessDbSchema {
                 BusinessDbSchema.BusinessTable.Cols.ADDRESS + " TEXT, " +
                 BusinessDbSchema.BusinessTable.Cols.STATE + " TEXT, " +
                 BusinessDbSchema.BusinessTable.Cols.ZIP + " TEXT, " +
+                BusinessDbSchema.BusinessTable.Cols.IMAGE_REF + " TEXT, " +
+                Cols.LATITUDE + " TEXT, " +
+                Cols.LONGITUDE + " TEXT, " +
                 BusinessDbSchema.BusinessTable.Cols.TYPE + " TEXT, " +
                 BusinessDbSchema.BusinessTable.Cols.FAVORITED + " TEXT )";
 
@@ -23,6 +26,9 @@ public class BusinessDbSchema {
             public static final String ADDRESS = "address";
             public static final String STATE = "state";
             public static final String ZIP = "zip";
+            public static final String IMAGE_REF="image_ref";
+            public static final String LONGITUDE="longitude";
+            public static final String LATITUDE="latitude";
             public static final String TYPE = "type";
             public static final String FAVORITED = "isFavorite";
         }

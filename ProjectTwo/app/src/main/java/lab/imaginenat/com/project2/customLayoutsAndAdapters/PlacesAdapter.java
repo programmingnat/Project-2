@@ -49,6 +49,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceItemH
         Place place = mPlaceManager.getPlaceAtIndex(position);
         holder.bindListItem(place);
         //holder.mTitleTextView.setText(player.getName());
+
     }
 
     @Override

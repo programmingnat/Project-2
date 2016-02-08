@@ -50,6 +50,9 @@ public class BusinessManager {
         values.put(BusinessDbSchema.BusinessTable.Cols.ADDRESS,b.getAddress());
         values.put(BusinessDbSchema.BusinessTable.Cols.STATE,b.getState());
         values.put(BusinessDbSchema.BusinessTable.Cols.ZIP,b.getZip());
+        values.put(BusinessDbSchema.BusinessTable.Cols.IMAGE_REF,b.getImageResource());
+        values.put(BusinessDbSchema.BusinessTable.Cols.LATITUDE,b.getLat());
+        values.put(BusinessDbSchema.BusinessTable.Cols.LONGITUDE,b.getLong());
         values.put(BusinessDbSchema.BusinessTable.Cols.TYPE,b.getType());
         values.put(BusinessDbSchema.BusinessTable.Cols.FAVORITED,b.isFavorited());
 

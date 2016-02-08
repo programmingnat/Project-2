@@ -11,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import lab.imaginenat.com.project2.database.BusinessDbSchema;
 import lab.imaginenat.com.project2.models.BusinessManager;
@@ -29,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         ListView listView = (ListView)findViewById(R.id.favorites_listView);
-        Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
-        mCursorAdapter = new CursorAdapter(MainActivity.this,c,0) {
+        Cursor c1 = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
+        mCursorAdapter = new CursorAdapter(MainActivity.this,c1,0) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
                 return LayoutInflater.from(context).inflate(R.layout.favorite_list_item,parent,false);
@@ -38,9 +41,30 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void bindView(View view, Context context, Cursor cursor) {
-                Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
+
                 TextView t = (TextView)view.findViewById(R.id.businessName_TextView);
-                t.setText(cursor.getString(c.getColumnIndex(BusinessDbSchema.BusinessTable.Cols.BIZ_NAME)));
+                t.setText(cursor.getString(cursor.getColumnIndex(BusinessDbSchema.BusinessTable.Cols.BIZ_NAME)));
+
+
+
+                String baseURL="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=";
+                String endURL="&key=AIzaSyBS4nUQRSuaqOYYWYmj7eCWkecFbCTjW1A";
+
+                ImageView thumbnail = (ImageView)view.findViewById(R.id.thumbnailImg);
+                //image name saved in table and save as resourceID
+                int columnCount= cursor.getColumnCount();
+                Log.d("MainActivity","getting column count as "+columnCount);
+                String imageResource = cursor.getString(cursor.getColumnIndex(BusinessDbSchema.BusinessTable.Cols.IMAGE_REF));
+                String fullResource =baseURL+imageResource+endURL;
+                String address = cursor.getString(cursor.getColumnIndex(BusinessDbSchema.BusinessTable.Cols.ADDRESS));
+
+                TextView addressTV=(TextView)view.findViewById(R.id.address_textView);
+                addressTV.setText(address);
+                //Log.d("MainActivity ","FULL:"+fullResource);
+
+                Picasso.with(MainActivity.this).load(fullResource).error(R.drawable.android_placeholder)
+                        .placeholder(R.drawable.android_placeholder)
+                        .into(thumbnail);
             }
         };
 

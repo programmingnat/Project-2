@@ -11,6 +11,33 @@ public class Place {
     String mBusinessCity;
     String mBusinessState;
     String mZipCode;
+    String mImageResource;
+    String mLatitude;
+    String mLongitude;
+
+    public String getLatitude() {
+        return mLatitude;
+    }
+
+    public void setLatitude(String latitude) {
+        mLatitude = latitude;
+    }
+
+    public String getLongitude() {
+        return mLongitude;
+    }
+
+    public void setLongitude(String longitude) {
+        mLongitude = longitude;
+    }
+
+    public String getImageResource() {
+        return mImageResource;
+    }
+
+    public void setImageResource(String imageResource) {
+        mImageResource = imageResource;
+    }
 
     public Place(String businessName){
         mBusinessName=businessName;

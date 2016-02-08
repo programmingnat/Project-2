@@ -12,7 +12,35 @@ public class Business {
     private String mState;
     private String mZip;
     private String mType;
+    private String mImageResource;
+    private String mLat,mLong;
+
+    public String getImageResource() {
+        return mImageResource;
+    }
+
+    public void setImageResource(String imageResource) {
+        mImageResource = imageResource;
+    }
+
+    public String getLat() {
+        return mLat;
+    }
+
+    public void setLat(String lat) {
+        mLat = lat;
+    }
+
+    public String getLong() {
+        return mLong;
+    }
+
+    public void setLong(String aLong) {
+        mLong = aLong;
+    }
+
     private boolean mIsFavorited;
+
 
     public Business(String name,  String address, String state, String zip, String type) {
         mName = name;
