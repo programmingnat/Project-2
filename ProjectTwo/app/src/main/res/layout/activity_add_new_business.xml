@@ -24,6 +24,7 @@
                 android:text="BUSINESS NAME:"
                 android:textSize="12sp"/>
             <EditText
+                android:id="@+id/businessName_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="ENTER BUSINESS NAME HERE"
@@ -41,6 +42,7 @@
                 android:text="STREET:"
                 android:textSize="12sp"/>
             <EditText
+                android:id="@+id/businessAddress_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="ENTER STREET ADDRESS HERE"
@@ -58,6 +60,7 @@
                 android:text="STATE:"
                 android:textSize="12sp"/>
             <EditText
+                android:id="@+id/businessState_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="ENTER STATE"
@@ -75,6 +78,7 @@
                 android:text="ZIP CODE:"
                 android:textSize="12sp"/>
             <EditText
+                android:id="@+id/businessZip_EditText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="ENTER ZIP CODE HERE"

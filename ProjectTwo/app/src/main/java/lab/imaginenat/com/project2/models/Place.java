@@ -4,11 +4,14 @@ package lab.imaginenat.com.project2.models;
  * Created by nat on 2/6/16.
  */
 public class Place {
+
+    public static String PLACE_ID_EXTRA = "PLACE_ID_EXTRA";
     String mBusinessName;
     String mBusinessAddress;
     String mBusinessCity;
     String mBusinessState;
     String mZipCode;
+
     public Place(String businessName){
         mBusinessName=businessName;
     }
@@ -55,10 +58,14 @@ public class Place {
     }
 
     public void setAddress(String s){
+        //913 Broadway, New York, NY 10010, United States"
         String[] entireAddress=s.split(",");
         mBusinessAddress= entireAddress[0];
         mBusinessCity=entireAddress[1];
-        mBusinessState= entireAddress[2];
-        mZipCode=entireAddress[3];
+        String[]stateAndZip= entireAddress[2].split(" ");
+        mBusinessState=stateAndZip[1];
+        mZipCode=stateAndZip[2];
+
+        //Log.d("Place ","Inside setAddress with "+entireAddress[2]+"| "+stateAndZip[0]+" |"+stateAndZip[1]);
     }
 }

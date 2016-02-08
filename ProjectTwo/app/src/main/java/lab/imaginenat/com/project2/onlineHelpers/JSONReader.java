@@ -7,24 +7,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lab.imaginenat.com.project2.models.Place;
+import lab.imaginenat.com.project2.models.PlaceManager;
 
 /**
  * Created by nat on 2/6/16.
  */
 public class JSONReader extends DownloadData {
     private String LOG_TAG=JSONReader.class.getSimpleName();
-    private List<Place> mPlaces;
     private Uri mDestinationUri;
+    private NotifyMeWhenDone notifyMe;
 
-    public JSONReader(String searchCriteria){
+    public JSONReader(String searchCriteria,NotifyMeWhenDone nm){
         super(null);
-        Log.d("SearchActivity","search criteria "+searchCriteria);
+        notifyMe=nm;
+        Log.d("SearchActivity", "search criteria " + searchCriteria);
         createAndUpdateUri(searchCriteria);
-        mPlaces = new ArrayList<>();
+
     }
 
     public void execute(){
@@ -35,9 +34,7 @@ public class JSONReader extends DownloadData {
 
     }
 
-    public List<Place> getPlaces(){
-        return mPlaces;
-    }
+
     public boolean createAndUpdateUri(String longLatLocation){
         //final String ONLINE_QUERY="https://maps.googleapis.com/maps/api/place/nearbysearch/json";//?location=-33.8670522,151.1957362&radius=500&types=food&name=cruise&key=AIzaSyBS4nUQRSuaqOYYWYmj7eCWkecFbCTjW1A";
         final String ONLINE_QUERY="https://maps.googleapis.com/maps/api/place/textsearch/json";//
@@ -86,7 +83,7 @@ public class JSONReader extends DownloadData {
 
             JSONObject jsonData = new JSONObject(getData());
             JSONArray resultsArray  = jsonData.getJSONArray(RESULTS);
-
+            PlaceManager placeManager = PlaceManager.getInstance();
             for(int i=0;i<resultsArray.length();i++){
                 JSONObject dataObject =resultsArray.getJSONObject(i);
                 String name = dataObject.getString(NAME);
@@ -95,10 +92,10 @@ public class JSONReader extends DownloadData {
 
                 Place place = new Place(name);
                 place.setAddress(address);
-                this.mPlaces.add(place);
+                placeManager.addPlace(place);
             }
 
-
+            notifyMe.completedTask();
         }catch(JSONException je) {
             je.printStackTrace();
             Log.e(LOG_TAG,"!!!!!!!!!!!!Error processing Json data ");

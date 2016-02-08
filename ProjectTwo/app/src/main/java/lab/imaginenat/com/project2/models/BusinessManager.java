@@ -1,4 +1,4 @@
-package lab.imaginenat.com.project2;
+package lab.imaginenat.com.project2.models;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import lab.imaginenat.com.project2.Business;
 import lab.imaginenat.com.project2.database.BusinessDbSchema;
 import lab.imaginenat.com.project2.database.BusinessTableHelper;
 

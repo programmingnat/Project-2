@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,10 +29,12 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
+import lab.imaginenat.com.project2.customLayoutsAndAdapters.PlacesAdapter;
 import lab.imaginenat.com.project2.onlineHelpers.JSONReader;
+import lab.imaginenat.com.project2.onlineHelpers.NotifyMeWhenDone;
 
 public class SearchActivity extends AppCompatActivity
-        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,NotifyMeWhenDone {
     //STUFF TO CALL GOOGLE API and ATTEMPT TO RESOLVE PROBLEM (from google developer)
     private static final int REQUEST_FINE_LOCATION = 0;
 
@@ -50,12 +54,16 @@ public class SearchActivity extends AppCompatActivity
     private String mLatAndLong="40.739885,-73.990082";//GA Coordinates as default
 
 
+    //GUI related
+    RecyclerView mPlaceListView;
+    PlacesAdapter mPlacesAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //create client because we use google play services for the gms location service
+        //create client because we use google play services for the gms location service, but u
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
@@ -71,7 +79,7 @@ public class SearchActivity extends AppCompatActivity
             public void onClick(View v) {
                 Log.d("SearchActivity", "CLICKED");
                 getLongLat(v);
-                JSONReader reader = new JSONReader(mLatAndLong);//"40.7144,-74.006");
+                JSONReader reader = new JSONReader(mLatAndLong,SearchActivity.this);//"40.7144,-74.006");
                 reader.execute();
 
                 //Intent toSearchResults = new Intent(SearchActivity.this, ResultsActivity.class);
@@ -79,6 +87,13 @@ public class SearchActivity extends AppCompatActivity
                 //startActivity(toSearchResults);
             }
         });
+
+        //GUI
+        mPlaceListView = (RecyclerView)findViewById(R.id.placesRecyclerView);
+        mPlacesAdapter = new PlacesAdapter(SearchActivity.this);
+        mPlaceListView.setAdapter(mPlacesAdapter);
+        mPlaceListView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
@@ -243,6 +258,11 @@ public class SearchActivity extends AppCompatActivity
         args.putInt(DIALOG_ERROR, errorCode);
         dialogFragment.setArguments(args);
         dialogFragment.show(getSupportFragmentManager(), "errordialog");
+    }
+
+    @Override
+    public void completedTask() {
+        mPlacesAdapter.notifyDataSetChanged();
     }
 
     /* A fragment to display an error dialog */

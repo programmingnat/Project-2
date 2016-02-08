@@ -15,11 +15,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import lab.imaginenat.com.project2.database.BusinessDbSchema;
+import lab.imaginenat.com.project2.models.BusinessManager;
 
 //
 public class MainActivity extends AppCompatActivity {
 
-
+    private CursorAdapter mCursorAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         ListView listView = (ListView)findViewById(R.id.favorites_listView);
-        final Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
-        CursorAdapter cursorAdapter = new CursorAdapter(MainActivity.this,c,0) {
+        Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
+        mCursorAdapter = new CursorAdapter(MainActivity.this,c,0) {
             @Override
             public View newView(Context context, Cursor cursor, ViewGroup parent) {
                 return LayoutInflater.from(context).inflate(R.layout.favorite_list_item,parent,false);
@@ -37,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void bindView(View view, Context context, Cursor cursor) {
+                Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
                 TextView t = (TextView)view.findViewById(R.id.businessName_TextView);
                 t.setText(cursor.getString(c.getColumnIndex(BusinessDbSchema.BusinessTable.Cols.BIZ_NAME)));
             }
         };
 
-        listView.setAdapter(cursorAdapter);
+        listView.setAdapter(mCursorAdapter);
 
         Button toSearchButton = (Button)findViewById(R.id.searchButton);
         toSearchButton.setOnClickListener(new View.OnClickListener() {
@@ -63,5 +65,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(toSearchOptions);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Cursor c = BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
+        mCursorAdapter.swapCursor(c);
+
     }
 }
