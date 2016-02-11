@@ -6,7 +6,7 @@ package lab.imaginenat.com.project2.database;
 public class BusinessDbSchema {
     public static final class BusinessTable {
         public static final String NAME = "businesses";
-        public static final String[] ALL_COLS = {Cols.UUID, Cols.BIZ_NAME, Cols.ADDRESS, Cols.STATE,Cols.ZIP, Cols.IMAGE_REF,Cols.LATITUDE,Cols.LONGITUDE,Cols.TYPE, Cols.FAVORITED};
+        public static final String[] ALL_COLS = {Cols.UUID, Cols.BIZ_NAME, Cols.ADDRESS, Cols.STATE,Cols.ZIP, Cols.IMAGE_REF,Cols.LATITUDE,Cols.LONGITUDE,Cols.TYPE, Cols.FAVORITED,Cols.REVIEW};
         public static final String CREATE_BUSINESS_TABLE = "CREATE TABLE " + BusinessDbSchema.BusinessTable.NAME +
                 "(" +
                 BusinessDbSchema.BusinessTable.Cols.UUID + " INTEGER PRIMARY KEY, " +
@@ -18,7 +18,8 @@ public class BusinessDbSchema {
                 Cols.LATITUDE + " TEXT, " +
                 Cols.LONGITUDE + " TEXT, " +
                 BusinessDbSchema.BusinessTable.Cols.TYPE + " TEXT, " +
-                BusinessDbSchema.BusinessTable.Cols.FAVORITED + " TEXT )";
+                BusinessDbSchema.BusinessTable.Cols.REVIEW + " TEXT, " +
+                BusinessDbSchema.BusinessTable.Cols.FAVORITED + " REAL )";
 
         public static final class Cols {
             public static final String UUID = "_id";
@@ -31,6 +32,7 @@ public class BusinessDbSchema {
             public static final String LATITUDE="latitude";
             public static final String TYPE = "type";
             public static final String FAVORITED = "isFavorite";
+            public static final String REVIEW="review";
         }
     }
 }

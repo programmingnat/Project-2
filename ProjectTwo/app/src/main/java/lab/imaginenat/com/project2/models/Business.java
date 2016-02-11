@@ -1,11 +1,13 @@
-package lab.imaginenat.com.project2;
-
+package lab.imaginenat.com.project2.models;
 import java.util.UUID;
 
 /**
  * Created by nat on 2/3/16.
  */
 public class Business {
+
+
+    public static String BUSINESS_ID_KEY="BUSINESS_ID";
     private String mName;
     private UUID mUUID;
     private String mAddress;
@@ -14,6 +16,33 @@ public class Business {
     private String mType;
     private String mImageResource;
     private String mLat,mLong;
+    private String mDescription;
+    private float mRatings;
+    private int mId;
+
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int id) {
+        mId = id;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String description) {
+        mDescription = description;
+    }
+
+    public float getRatings() {
+        return mRatings;
+    }
+
+    public void setRatings(float ratings) {
+        mRatings = ratings;
+    }
 
     public String getImageResource() {
         return mImageResource;

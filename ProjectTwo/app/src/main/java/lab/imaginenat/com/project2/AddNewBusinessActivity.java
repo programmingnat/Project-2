@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import lab.imaginenat.com.project2.models.Business;
 import lab.imaginenat.com.project2.models.BusinessManager;
 import lab.imaginenat.com.project2.models.Place;
 import lab.imaginenat.com.project2.models.PlaceManager;
@@ -41,6 +42,7 @@ public class AddNewBusinessActivity extends AppCompatActivity {
                 EditText addressTF = (EditText)findViewById(R.id.businessAddress_EditText);
                 EditText stateTF = (EditText)findViewById(R.id.businessState_EditText);
                 EditText zipTF = (EditText)findViewById(R.id.businessZip_EditText);
+
                 Business b = new Business(nameTF.getText().toString(),addressTF.getText().toString(),
                         stateTF.getText().toString(),zipTF.getText().toString(),"default");
                 b.setImageResource(mPlace.getImageResource());
