@@ -38,7 +38,6 @@ import lab.imaginenat.com.project2.database.BusinessDbSchema;
 import lab.imaginenat.com.project2.models.Business;
 import lab.imaginenat.com.project2.models.BusinessManager;
 
-//
 public class MainActivity extends AppCompatActivity {
 
 

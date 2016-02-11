@@ -10,4 +10,8 @@
             android:title="Detailed Search"
             android:icon="@drawable/microscope"
             app:showAsAction="collapseActionView|ifRoom"/>
+    <item android:id='@+id/showMap'
+          android:title="showMap"
+          android:icon="@android:drawable/ic_dialog_map"
+          app:showAsAction="collapseActionView|ifRoom"/>
 </menu>

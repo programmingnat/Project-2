@@ -20,6 +20,7 @@ public class JSONReader extends DownloadData {
     private Uri mDestinationUri;
     private NotifyMeWhenDone notifyMe;
 
+
     public JSONReader(String searchCriteria,NotifyMeWhenDone nm){
         super(null);
         notifyMe=nm;

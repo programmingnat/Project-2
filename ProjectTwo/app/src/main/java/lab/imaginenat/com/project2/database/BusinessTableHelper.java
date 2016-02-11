@@ -85,7 +85,7 @@ public class BusinessTableHelper extends SQLiteOpenHelper {
                 whereArgs,//selection args
                 null,//group
                 null,//having
-                null,//order
+                order,//order
                 null);//limit
 
         return c;

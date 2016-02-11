@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.Random;
-
 import lab.imaginenat.com.project2.AddNewBusinessActivity;
 import lab.imaginenat.com.project2.R;
 import lab.imaginenat.com.project2.models.Place;
@@ -76,8 +74,8 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceItemH
 
 
 
-            Random rnd = new Random();
-            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+            int color = Color.argb(255, (100), (100), (100));
             mLinearLayout.setBackgroundColor(color);
 
         }
