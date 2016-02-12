@@ -52,9 +52,15 @@ public class Detailed_Business_Activity extends AppCompatActivity {
         Log.d("DetaileBusinessActivity", "image resource: " + imageResource);
         String fullResource =baseURL+imageResource+endURL;
 
-        Picasso.with(Detailed_Business_Activity.this).load(fullResource).error(R.drawable.android_placeholder)
-                .placeholder(R.drawable.android_placeholder)
-                .into(thumbnail);
+        if(imageResource.equals("chipolteImage")){
+            thumbnail.setImageResource(R.drawable.chipolte);
+        }else{
+            Picasso.with(Detailed_Business_Activity.this).load(fullResource).error(R.drawable.android_placeholder)
+                    .placeholder(R.drawable.android_placeholder)
+                    .into(thumbnail);
+
+        }
+
 
         Log.d("dba","the number of starts "+mBusiness.getRatings());
          mRatingBar = (RatingBar)findViewById(R.id.ratingBar);
@@ -77,5 +83,12 @@ public class Detailed_Business_Activity extends AppCompatActivity {
         mBusiness.setRatings(rating);
         BusinessManager.getInstance(Detailed_Business_Activity.this).updateBusiness(mBusiness);
         Log.d("Detailed_BusineActivity","the text of the notes "+mBusiness.getDescription());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent p = new Intent();
+        setResult(100,p);
+        finish();
     }
 }

@@ -10,27 +10,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="lab.imaginenat.com.project2.SearchActivity">
 
-    <FrameLayout
-        android:id="@+id/recyclerView_FrameLayout"
+    <!--<FrameLayout-->
+        <!--android:id="@+id/recyclerView_FrameLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp">-->
+
+
+
+    <!--</FrameLayout>-->
+    <ImageView
+        android:id="@+id/broadcast_tower_imageView"
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="200dp"
+        android:src="@drawable/radio_tower"
+        android:scaleType = "centerCrop"
+        android:alpha="20"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/placesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:layout_below="@id/broadcast_tower_imageView">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/broadcast_tower"
-            android:scaleType = "centerCrop"/>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/placesRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="335dp">
-
-        </android.support.v7.widget.RecyclerView>
-    </FrameLayout>
+    </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerView_FrameLayout">
+        android:layout_below="@+id/placesRecyclerView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <TextView
             android:text="Search Options"
             android:layout_width="match_parent"

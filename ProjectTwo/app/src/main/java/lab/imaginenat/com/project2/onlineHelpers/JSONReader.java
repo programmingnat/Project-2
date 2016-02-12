@@ -50,7 +50,7 @@ public class JSONReader extends DownloadData {
         mDestinationUri =Uri.parse(ONLINE_QUERY).buildUpon()
                 .appendQueryParameter(ARG_QUERY,"restaurant")//required for text result
                 .appendQueryParameter(ARG_LOCATION,longLatLocation)
-                .appendQueryParameter(ARG_RADIUS,"500")
+                .appendQueryParameter(ARG_RADIUS,"550")//represents meters
                 .appendQueryParameter(ARG_TYPES,"restaurant|cafe|bar")
                 .appendQueryParameter(ARG_KEY,"AIzaSyBS4nUQRSuaqOYYWYmj7eCWkecFbCTjW1A")
                 .build();
@@ -90,7 +90,11 @@ public class JSONReader extends DownloadData {
 
             JSONObject jsonData = new JSONObject(getData());
             JSONArray resultsArray  = jsonData.getJSONArray(RESULTS);
+            //while it is a search result from google places it is managed by the PlaceManager
+            //once it is in the database, it is managed by the businessManager.
+
             PlaceManager placeManager = PlaceManager.getInstance();
+
             for(int i=0;i<resultsArray.length();i++){
                 JSONObject dataObject =resultsArray.getJSONObject(i);
                 String name = dataObject.getString(NAME);
@@ -113,6 +117,7 @@ public class JSONReader extends DownloadData {
 
                 Log.d("JSONREADER","name "+name);
 
+
                 Place place = new Place(name);
                 place.setAddress(address);
                 place.setImageResource(photoReference);
@@ -120,6 +125,9 @@ public class JSONReader extends DownloadData {
                 place.setLongitude(lng);
                 placeManager.addPlace(place);
 
+                //We check if it is already in the database (to mark the place object as already in database)
+                //place.setAddress parses the string returned by google to our format (that's why we call place.getBusinessAddress() instead of just putting in address returned)
+                placeManager.checkAndUpdateIfInDatabase();
             }
 
             notifyMe.completedTask();

@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import lab.imaginenat.com.project2.customLayoutsAndAdapters.PlacesAdapter;
+import lab.imaginenat.com.project2.models.PlaceManager;
 import lab.imaginenat.com.project2.onlineHelpers.JSONReader;
 import lab.imaginenat.com.project2.onlineHelpers.NotifyMeWhenDone;
 
@@ -78,6 +79,7 @@ public class SearchActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Log.d("SearchActivity", "CLICKED");
+                PlaceManager.getInstance().clearAll();
                 //getLongLat(v);
                 JSONReader reader = new JSONReader(mLatAndLong,SearchActivity.this);//"40.7144,-74.006");
                 reader.execute();

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import lab.imaginenat.com.project2.AddNewBusinessActivity;
 import lab.imaginenat.com.project2.R;
@@ -75,8 +76,9 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceItemH
 
 
 
-            int color = Color.argb(255, (100), (100), (100));
-            mLinearLayout.setBackgroundColor(color);
+
+
+
 
         }
 
@@ -84,11 +86,22 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceItemH
         public void bindListItem(Place p){
             mPlace =p;
             mPlaceNameTextView.setText(mPlace.getBusinessName());
+            if(mPlace.isInDatabase()) {
+                int color = Color.argb(255, (80), (80), (80));
+                mLinearLayout.setBackgroundColor(color);
+            }else{
+                int color = Color.argb(255, (255), (255), (255));
+                mLinearLayout.setBackgroundColor(color);
+            }
 
         }
 
         public void onClick(View v){
 
+            if(mPlace.isInDatabase()){
+                Toast.makeText(mContext,"This place already exists in your database",Toast.LENGTH_SHORT).show();
+                return;
+            }
             Intent toAddIntent = new Intent(((Activity)mContext), AddNewBusinessActivity.class);
             int theIndex=PlaceManager.getInstance().getIndexOf(mPlace);
             toAddIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

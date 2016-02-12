@@ -44,4 +44,17 @@ public class PlaceManager {
     public int getSize(){
         return mAllPlacesFound.size();
     }
+
+    public void clearAll(){
+        mAllPlacesFound.clear();
+    }
+
+    public void checkAndUpdateIfInDatabase(){
+        for(Place p:mAllPlacesFound){
+            boolean isAlreadyInDatabase = BusinessManager.isAlreadyInTable(p.getLatitude(),p.getLongitude(),p.getBusinessAddress(),p.getBusinessName());
+            p.setIsInDatabase(isAlreadyInDatabase);
+        }
+
+    }
+    
 }

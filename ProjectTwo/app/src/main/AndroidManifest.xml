@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     //---
     <application
         android:allowBackup="true"
@@ -39,6 +41,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable"/>
         </activity>
+        <activity android:name=".MapsActivity"/>
         <activity android:name=".SearchActivity">
         </activity>
         <activity android:name=".ResultsActivity">
@@ -59,6 +62,8 @@
             android:name=".ScrollingDetailBusinessActivity"
             android:label="@string/title_activity_scrolling_detail_business"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".PlaceHolderMapActivity">
         </activity>
     </application>
 

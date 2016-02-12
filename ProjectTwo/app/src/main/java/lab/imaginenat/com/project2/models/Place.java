@@ -14,6 +14,15 @@ public class Place {
     String mImageResource;
     String mLatitude;
     String mLongitude;
+    boolean mIsInDatabase;
+
+    public boolean isInDatabase() {
+        return mIsInDatabase;
+    }
+
+    public void setIsInDatabase(boolean isInDatabase) {
+        mIsInDatabase = isInDatabase;
+    }
 
     public String getLatitude() {
         return mLatitude;
