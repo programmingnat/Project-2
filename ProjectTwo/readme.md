@@ -9,3 +9,4 @@ You can then add the restaurant to you local database.
 
 <img src="https://raw.githubusercontent.com/programmingnat/Project-2/master/ProjectTwo/firstScreen_Fotor.jpg"/>
 <img src="https://raw.githubusercontent.com/programmingnat/Project-2/master/ProjectTwo/googlePlaceResults_Fotor.jpg"/>
+<img src="https://raw.githubusercontent.com/programmingnat/Project-2/master/ProjectTwo/detailView_Fotor.jpg"/>

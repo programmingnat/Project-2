@@ -31,7 +31,7 @@ public class DialogHelper {
     }
 
     /**
-     * This method is essentially the onCreate of an activity in that in
+     * This method is essentially acts like an onCreate of an activity in that it
      * inflates the xml, fills in the data as well as event listeners
      * @param searchDialog - the dialog to be displayed
      * @param context - the context (Activity) where the dialog is to be displayed
@@ -123,6 +123,7 @@ public class DialogHelper {
 
                 }
                 Cursor c = bm.queryBusinesses(searchWhere,argsArray,orderBy);
+                //keep track of the last search query, which is used in Main onResume()
                 Log.d("query","cursor count "+c.getCount());
                 MainActivity.SEARCH_QUERY.searchWhere=searchWhere;
                 MainActivity.SEARCH_QUERY.theArgsArray=argsArray;

@@ -38,11 +38,14 @@ public class AddNewBusinessActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //From Place (which is returned in internet search) to Business (which is kept locally in database)
                 EditText nameTF = (EditText)findViewById(R.id.businessName_EditText);
                 EditText addressTF = (EditText)findViewById(R.id.businessAddress_EditText);
                 EditText stateTF = (EditText)findViewById(R.id.businessState_EditText);
                 EditText zipTF = (EditText)findViewById(R.id.businessZip_EditText);
 
+                //create new business from place (I know classes are kind of similar)
+                //initially was going to use places to put marks on google map activity
                 Business b = new Business(nameTF.getText().toString(),addressTF.getText().toString(),
                         stateTF.getText().toString(),zipTF.getText().toString(),"default");
                 b.setImageResource(mPlace.getImageResource());

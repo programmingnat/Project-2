@@ -37,6 +37,9 @@ import lab.imaginenat.com.project2.models.SearchQuery;
 public class MainActivity extends AppCompatActivity {
 
 
+    //This is (quick)fix to remember what to show when the back button is pressed
+    //There are only three states the main activity search could be in NOT SEARCHING,QUICK SEARCHING,ADVANCED SEARCH
+    //There are four  places where this info needs to be set onCreate,handlerIntent,when search dialog open,and the text button on the MainActivity
     public static final int NO_SEARCH=0;
     public static final int QUICK_SEARCH=1;
     public static final int ADVANCED_SEARCH=2;
@@ -238,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         Log.d("MainActivity","onResume "+CURRENT_SEARCH);
+        //Code here is used to deal with situation when the back button is pressed and returns to main screen
         if(CURRENT_SEARCH==QUICK_SEARCH){
             BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
             CURRENT_SEARCH=QUICK_SEARCH;
@@ -272,6 +276,7 @@ public class MainActivity extends AppCompatActivity {
             CURRENT_SEARCH=QUICK_SEARCH;
             //The first part handles the query
             String query = intent.getStringExtra(SearchManager.QUERY);
+            //moved this code to onResume (for back Button press)
 //            //Log.d("MainActivity","query: "+query);
 //            BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
 //            CURRENT_SEARCH=QUICK_SEARCH;

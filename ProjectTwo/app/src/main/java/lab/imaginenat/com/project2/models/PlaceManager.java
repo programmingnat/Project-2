@@ -3,6 +3,7 @@ package lab.imaginenat.com.project2.models;
 import java.util.ArrayList;
 
 /**
+ * PlaceManager manages the Places (which is data for each restaurant returned by google)
  * Created by nat on 2/8/16.
  */
 public class PlaceManager {
@@ -10,12 +11,14 @@ public class PlaceManager {
     public static PlaceManager mInstance=null;
     private ArrayList<Place>mAllPlacesFound;
 
+
     public static PlaceManager getInstance(){
         if(mInstance==null){
             mInstance=new PlaceManager();
         }
         return mInstance;
     }
+
     private PlaceManager(){
         mAllPlacesFound = new ArrayList<>();
     }
