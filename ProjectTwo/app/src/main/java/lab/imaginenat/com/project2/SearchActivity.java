@@ -80,7 +80,7 @@ public class SearchActivity extends AppCompatActivity
             public void onClick(View v) {
                 Log.d("SearchActivity", "CLICKED");
                 PlaceManager.getInstance().clearAll();
-                //getLongLat(v);
+                //getLongLat(v);//UNCOMMENT THIS LINE FOR REAL TIME GPS
                 JSONReader reader = new JSONReader(mLatAndLong,SearchActivity.this);//"40.7144,-74.006");
                 reader.execute();
 
