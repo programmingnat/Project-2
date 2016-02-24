@@ -11,6 +11,7 @@ import lab.imaginenat.com.project2.database.BusinessDbSchema;
 import lab.imaginenat.com.project2.database.BusinessTableHelper;
 
 /**
+ * This class is in charge of the Business class, does first check to prevent duplicates and runs other logic before entering into database
  * Created by nat on 2/3/16.
  */
 public class BusinessManager {
@@ -123,6 +124,16 @@ public class BusinessManager {
 
     }
 
+    /**
+     * To prevent constant calls to the database to check if a business is already included
+     * This is mainly used by the GUI that displays the results from the Google Places API
+     * If a result is already in the database, the GUI won't allow the user to add it again
+     * @param lat - latitude
+     * @param lng -longitude
+     * @param address - street address
+     * @param name - business name
+     * @return
+     */
     public static boolean isAlreadyInTable(String lat, String lng,String address,String name){
         Log.d("BusinessManager","Checking if "+name+" is already in table");
         String key = name;//lat+lng+address+name;

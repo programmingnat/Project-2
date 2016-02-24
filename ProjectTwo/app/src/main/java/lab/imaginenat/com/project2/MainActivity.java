@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -112,9 +114,12 @@ public class MainActivity extends AppCompatActivity {
                         TextView tv = (TextView)rl.findViewById(R.id.hiddenTextView);
                         String theID = tv.getText().toString();
                         Log.d("MainActivity", "theID: " + theID);
-                        BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
-                        bm.removeBusinessById(theID);
-                        mCursorAdapter.swapCursor(bm.getAllBusinesses());
+
+                        DeleteBusiness deleteBusiness = new DeleteBusiness();
+                        deleteBusiness.execute(theID);
+                        // BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
+                        //bm.removeBusinessById(theID);
+                        // mCursorAdapter.swapCursor(bm.getAllBusinesses());
 
                         Button deleteButton = (Button)rl.findViewById(R.id.deleteButton);
                         deleteButton.setVisibility(View.GONE);
@@ -309,6 +314,41 @@ public class MainActivity extends AppCompatActivity {
             //Cursor c =BusinessManager.getInstance(MainActivity.this).getAllBusinesses();
             //mCursorAdapter.swapCursor(c);
 
+        }
+    }
+    private class DeleteBusiness extends AsyncTask<String,Void,Void> {
+        String businessName,address,state,zip;
+
+        @Override
+        protected Void doInBackground(String... params) {
+            BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
+            bm.removeBusinessById(params[0]);
+
+            publishProgress();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            ProgressBar progressBar = (ProgressBar)findViewById(R.id.deleteBusinessProgressBar);
+            progressBar.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            BusinessManager bm = BusinessManager.getInstance(MainActivity.this);
+            mCursorAdapter.swapCursor(bm.getAllBusinesses());
+            ProgressBar progressBar = (ProgressBar)findViewById(R.id.deleteBusinessProgressBar);
+            progressBar.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
         }
     }
 }

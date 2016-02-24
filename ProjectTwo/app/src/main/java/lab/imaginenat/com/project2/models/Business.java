@@ -2,6 +2,8 @@ package lab.imaginenat.com.project2.models;
 import java.util.UUID;
 
 /**
+ * The Business class is used to represent the data in the favorites list
+ * on the main screen (as opposed to the Place class, that holds the data returned from the Google Places API
  * Created by nat on 2/3/16.
  */
 public class Business {

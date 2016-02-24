@@ -10,6 +10,7 @@ import android.util.Log;
 import lab.imaginenat.com.project2.models.Business;
 
 /**
+ * This class  gives us accesses to  the database via its methods
  * Created by nat on 2/3/16.
  */
 public class BusinessTableHelper extends SQLiteOpenHelper {

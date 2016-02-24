@@ -97,7 +97,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.PlaceItemH
         }
 
         public void onClick(View v){
-
+            //this was set marked as set or not once all places were read
             if(mPlace.isInDatabase()){
                 Toast.makeText(mContext,"This place already exists in your database",Toast.LENGTH_SHORT).show();
                 return;

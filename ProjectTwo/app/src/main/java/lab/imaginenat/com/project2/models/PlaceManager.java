@@ -52,6 +52,7 @@ public class PlaceManager {
         mAllPlacesFound.clear();
     }
 
+    //mark any places as "in database" if it is already in the database
     public void checkAndUpdateIfInDatabase(){
         for(Place p:mAllPlacesFound){
             boolean isAlreadyInDatabase = BusinessManager.isAlreadyInTable(p.getLatitude(),p.getLongitude(),p.getBusinessAddress(),p.getBusinessName());

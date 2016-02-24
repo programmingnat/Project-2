@@ -1,6 +1,7 @@
 package lab.imaginenat.com.project2.database;
 
 /**
+ * this class defines the database, table and cols
  * Created by nat on 2/3/16.
  */
 public class BusinessDbSchema {

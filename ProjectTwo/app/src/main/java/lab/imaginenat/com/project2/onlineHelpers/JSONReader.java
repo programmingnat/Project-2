@@ -119,14 +119,14 @@ public class JSONReader extends DownloadData {
 
 
                 Place place = new Place(name);
+                //place.setAddress parses the string returned by google to our format (that's why we call place.getBusinessAddress() instead of just putting in address returned)
                 place.setAddress(address);
                 place.setImageResource(photoReference);
                 place.setLatitude(lat);
                 place.setLongitude(lng);
                 placeManager.addPlace(place);
 
-                //We check if it is already in the database (to mark the place object as already in database)
-                //place.setAddress parses the string returned by google to our format (that's why we call place.getBusinessAddress() instead of just putting in address returned)
+                //We check if all places is already in the database (to mark the place object as already in database)
                 placeManager.checkAndUpdateIfInDatabase();
             }
 

@@ -1,6 +1,8 @@
 package lab.imaginenat.com.project2.models;
 
 /**
+ * Used to hold the results of GOogle Place API search
+ * It is very similar to the Business class, and may be swapped out for business class in the future
  * Created by nat on 2/6/16.
  */
 public class Place {
@@ -93,6 +95,10 @@ public class Place {
 
     }
 
+    /**
+     *
+     * @param s - the unparsed address String returned by google
+     */
     public void setAddress(String s){
         //913 Broadway, New York, NY 10010, United States"
         String[] entireAddress=s.split(",");
